@@ -1,5 +1,5 @@
 angular.module('cimonmon', [
     'ngWebSocket'
-]).run(function () {
+]).run(function ($log) {
     $log.debug('app started');
 });
