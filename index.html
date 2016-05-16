@@ -15,25 +15,11 @@
 </head>
 <body ng-app="cimonmon">
     <section ng-controller="MonitorPageCtrl">
-        <div class="job-item">
-            {{testString1}}
+        <div ng-repeat="data in monitorData">
+            <div class="job-item" ng-class="">
+                {{ data.name }}
+            </div>
         </div>
-        <div class="job-item">
-            {{testString2}}
-        </div>
-        <div class="job-item">
-            {{testString3}}
-        </div>
-        <div class="job-item">
-            {{testString4}}
-        </div>
-        <ul>
-            <li ng-repeat="data in monitorData.WebsocketService.collection track by $index">
-                <div class="job-item">
-                    {{ data }}
-                </div>
-            </li>
-        </ul>
     </section>
 </body>
 </html>

@@ -1,4 +1,6 @@
 angular.module('cimonmon').factory('WebsocketService', function($websocket, $rootScope, $log) {
+    $log.info('Registering websocket');
+
     var dataStream = $websocket('ws://localhost:3000/ws');
 
     dataStream.onMessage(function(message) {
