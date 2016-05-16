@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CIMon Monitor</title>
+
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-websocket/dist/angular-websocket.js"></script>
+
+    <script src="/src/app.js"></script>
+    <script src="/src/websockets/websocketService.js"></script>
+    <script src="/src/monitorPage/monitorPageCtrl.js"></script>
+</head>
+<body ng-app="cimonmon">
+    <section ng-controller="MonitorPageCtrl">
+        {{testString}}
+        <ul>
+            <li ng-repeat="data in monitorData.WebsocketService.collection track by $index">
+                {{ data }}
+            </li>
+        </ul>
+    </section>
+</body>
+</html>
