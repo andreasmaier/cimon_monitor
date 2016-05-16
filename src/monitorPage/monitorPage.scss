@@ -1,0 +1,18 @@
+$darkestBlue: #222233;
+
+$lightBlue: #ddddff;
+
+html {
+  height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  //background: #70bg32;
+  background-repeat:no-repeat;
+  background: -webkit-linear-gradient( to left top, $lightBlue, $darkestBlue);
+  background: -moz-linear-gradient( to left top, $lightBlue, $darkestBlue);
+  background: -ms-linear-gradient( to left top, $lightBlue, $darkestBlue);
+  background: -o-linear-gradient( to left top, $lightBlue, $darkestBlue);
+  background: linear-gradient( to left top, $lightBlue, $darkestBlue);
+}
