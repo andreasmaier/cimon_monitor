@@ -9,12 +9,6 @@ gulp.task('server', function() {
         },
         port: 8888
     });
-});
 
-// // or...
-//
-// gulp.task('browser-sync', function() {
-//     browserSync.init({
-//         proxy: "yourlocal.dev"
-//     });
-// });
+    gulp.watch("src/**/*.js").on('change', browserSync.reload);
+});
