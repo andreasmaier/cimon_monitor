@@ -53,6 +53,22 @@ html {
       background: $successGreen;
     }
 
+    @keyframes swing {
+      20% {
+        transform: rotate3d(0, 0, 1, 0deg);
+      }
+
+      40% {
+        transform: rotate3d(0, 0, 1, -5deg);
+      }
+      80% {
+        transform: rotate3d(0, 0, 1, 5deg);
+      }
+      to {
+        transform: rotate3d(0, 0, 1, 0deg);
+      }
+    }
+
     &.running {
       @keyframes example {
         0% {
@@ -66,9 +82,19 @@ html {
         }
       }
 
-      animation-name: example;
-      animation-duration: 3s;
+      transform-origin: top center;
+      animation-name: swing, example;
+      animation-duration: 1s;
       animation-iteration-count: infinite;
     }
   }
+}
+
+.manage-button {
+  background-color: red;
+  color: white;
+  padding: 20px;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
 }

@@ -9,18 +9,15 @@
 
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-websocket/dist/angular-websocket.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 
     <script src="/src/app.js"></script>
     <script src="/src/websockets/websocketService.js"></script>
-    <script src="/src/monitorPage/monitorPageCtrl.js"></script>
+    <script src="/src/monitor/monitorRouter.js"></script>
+    <script src="/src/monitor/monitorCtrl.js"></script>
 </head>
 <body ng-app="cimonmon">
-    <section ng-controller="MonitorPageCtrl">
-        <div class="job-item-container" ng-repeat="data in monitorData">
-            <div class="job-item" ng-class="[data.buildStatus, data.runStatus]">
-                {{ data.name }}
-            </div>
-        </div>
-    </section>
+    <div ui-view>
+    </div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-angular.module('cimonmon').controller('MonitorPageCtrl', function ($scope, $rootScope, $log, WebsocketService) {
+angular.module('cimonmon').controller('MonitorPageCtrl', function ($scope, $rootScope, $log, $state, WebsocketService) {
     $scope.monitorData = [];
     $scope.monitorData.push(buildJob("My first job", "FirstJob"));
     $scope.monitorData.push(buildJob("the failing job", "FailingJob"));
@@ -32,6 +32,10 @@ angular.module('cimonmon').controller('MonitorPageCtrl', function ($scope, $root
             }
         }
     });
+
+    $scope.onManageClicked = function () {
+        // $state.go('manage');
+    };
 
     function buildJob(name, key) {
         return {
