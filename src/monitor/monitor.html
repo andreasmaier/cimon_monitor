@@ -1,4 +1,4 @@
-<div ng-controller="MonitorPageCtrl">
+<div class="monitor" ng-controller="MonitorPageCtrl">
     <div class="job-item-container" ng-repeat="data in monitorData">
         <div class="job-item" ng-class="[data.buildStatus, data.runStatus]">
             {{ data.name }}

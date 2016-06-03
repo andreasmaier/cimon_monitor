@@ -1,9 +1,19 @@
-angular.module('cimonmon').controller('MonitorPageCtrl', function ($scope, $rootScope, $log, $state, WebsocketService) {
+angular.module('cimonmon').controller('MonitorPageCtrl', function ($scope, $rootScope, $log, $state, WebsocketService, JobsService) {
     $scope.monitorData = [];
-    $scope.monitorData.push(buildJob("My first job", "FirstJob"));
-    $scope.monitorData.push(buildJob("the failing job", "FailingJob"));
-    $scope.monitorData.push(buildJob("job with a long description that goes on and on", "ThirdJob"));
-    $scope.monitorData.push(buildJob("yet another job", "FourthJob"));
+
+    JobsService.index()
+        .then(function (jobs) {
+            $log.info('watched jobs:', jobs);
+
+            jobs.data.forEach(function (job) {
+                console.log('job', job);
+
+                $scope.monitorData.push(buildJob(job.path, job.path));
+            });
+        })
+        .catch(function (error) {
+            $log.error('Error fetching jobs:', error);
+        });
 
     $rootScope.$on('jobStatusUpdate', function (event, args) {
         var jobStatus = JSON.parse(args);
@@ -12,7 +22,7 @@ angular.module('cimonmon').controller('MonitorPageCtrl', function ($scope, $root
 
         var job = $scope.monitorData
             .find(function (element) {
-                return element.key === jobStatus.name;
+                return element.key === jobStatus.url;
             });
 
         if (job) {
@@ -34,7 +44,7 @@ angular.module('cimonmon').controller('MonitorPageCtrl', function ($scope, $root
     });
 
     $scope.onManageClicked = function () {
-        // $state.go('manage');
+        $state.go('manage');
     };
 
     function buildJob(name, key) {
