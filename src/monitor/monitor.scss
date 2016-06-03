@@ -2,13 +2,17 @@ $darkestBlue: #0b0c27;
 $lightBlue: #5e82b2;
 
 $failureRed: rgba(255, 100, 100, 0.75);
+$failureLightRed: rgba(255, 181, 179, 0.85);
 
 $successGreen: rgba(114, 255, 132, 0.75);
+$successLightGreen: rgba(168, 255, 182, 0.85);
 
 $unknownGrey: rgba(255, 255, 255, 0.35);
 $unknownLightGrey: rgba(255, 255, 255, 0.85);
 
 html {
+  font-family: 'Open Sans', sans-serif;
+
   height: 100%;
   max-width: 100%;
   overflow-x: hidden;
@@ -30,8 +34,6 @@ html {
   max-width: 75%;
 
   .job-item {
-    font-family: 'Open Sans', sans-serif;
-
     font-size: 60px;
     line-height: 120px;
     padding: 0 60px;
@@ -70,31 +72,77 @@ html {
     }
 
     &.running {
-      @keyframes example {
-        0% {
-          background-color: $unknownGrey;
+      &.unknown {
+        @keyframes blinkUnknown {
+          0% {
+            background-color: $unknownGrey;
+          }
+          50% {
+            background-color: $unknownLightGrey;
+          }
+          100% {
+            background-color: $unknownGrey;
+          }
         }
-        50% {
-          background-color: $unknownLightGrey;
-        }
-        100% {
-          background-color: $unknownGrey;
-        }
+
+        transform-origin: top center;
+        animation-name: swing, blinkUnknown;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
       }
 
-      transform-origin: top center;
-      animation-name: swing, example;
-      animation-duration: 1s;
-      animation-iteration-count: infinite;
+      &.success {
+        @keyframes blinkSuccess {
+          0% {
+            background-color: $successGreen;
+          }
+          50% {
+            background-color: $successLightGreen;
+          }
+          100% {
+            background-color: $successGreen;
+          }
+        }
+
+        transform-origin: top center;
+        animation-name: swing, blinkSuccess;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+      }
+
+      &.failure {
+        @keyframes blinkFailure {
+          0% {
+            background-color: $failureRed;
+          }
+          50% {
+            background-color: $failureLightRed;
+          }
+          100% {
+            background-color: $failureRed;
+          }
+        }
+
+        transform-origin: top center;
+        animation-name: swing, blinkFailure;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+      }
     }
   }
 }
 
 .manage-button {
-  background-color: red;
-  color: white;
+  background-color: $unknownLightGrey;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+
   padding: 20px;
   position: fixed;
   bottom: 50px;
   right: 50px;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
