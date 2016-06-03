@@ -11,7 +11,7 @@ angular.module('cimonmon').factory('JobsService', function ($http, $log) {
                     'Content-Type': 'application/json'
                 },
                 data: {
-                    server: job.server,
+                    // server: job.server,
                     path: job.path
                 }
             });

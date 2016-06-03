@@ -1,8 +1,8 @@
-<div ng-controller="ManageCtrl">
+<div ng-controller="ManageCtrl" class="manage">
     Manage Jobs
 
     <form>
-        Jenkins Server Url: <input type="text" ng-model="job.server">
+        <!--Jenkins Server Url: <input type="text" ng-model="job.server">-->
         Job Path: <input type="text" ng-model="job.path">
 
         <input type="submit" ng-click="watchJob(job)" value="Add Job">
