@@ -1,5 +1,6 @@
 angular.module('cimonmon').controller('ManageCtrl', function ($scope, $log, JobsService) {
     $scope.job = {};
+    $scope.watchedJobs = [];
     
     $scope.watchJob = function (newJob) {
         $log.debug('watch job requested', newJob);
@@ -11,5 +12,15 @@ angular.module('cimonmon').controller('ManageCtrl', function ($scope, $log, Jobs
             .catch(function (error) {
                 $log.error('Unable to store job [', newJob ,']. Error:', error);
             });
-    }
+    };
+
+    JobsService.index()
+        .then(function (response) {
+            $log.debug('Already watched jobs:', response.data.jobs);
+
+            $scope.watchedJobs = response.data.jobs;
+        })
+        .catch(function (error) {
+            $log.error('Error getting list of watched jobs. Error:', error);
+        });
 });

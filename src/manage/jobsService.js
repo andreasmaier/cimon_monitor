@@ -5,14 +5,15 @@ angular.module('cimonmon').factory('JobsService', function ($http, $log) {
 
             return $http({
                 method: 'POST',
-                url: 'http://localhost:3000/manage/jobs'
+                url: 'https://localhost:10000/v1/jobs'
                 ,
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 data: {
                     // server: job.server,
-                    path: job.path
+                    path: job.path,
+                    alias: job.alias
                 }
             });
         },
@@ -22,7 +23,7 @@ angular.module('cimonmon').factory('JobsService', function ($http, $log) {
 
             return $http({
                 method: 'GET',
-                url: 'http://localhost:3000/manage/jobs'
+                url: 'https://localhost:10000/v1/jobs'
             });
         }
     }

@@ -6,7 +6,7 @@ angular.module('cimonmon').controller('MonitorPageCtrl', function ($scope, $root
             $log.info('watched jobs:', jobs);
 
             jobs.data.forEach(function (job) {
-                $scope.monitorData.push(buildJob(job.path, job.path, job.status));
+                $scope.monitorData.push(buildJob(job.path, job.status, job.alias));
             });
         })
         .catch(function (error) {
@@ -45,10 +45,15 @@ angular.module('cimonmon').controller('MonitorPageCtrl', function ($scope, $root
         $state.go('manage');
     };
 
-    function buildJob(name, key, status) {
+    $scope.getDisplayName = function (job) {
+        return !job.alias || job.alias == '' ? job.key : job.alias;
+    };
+
+    function buildJob(key, status, alias) {
         return {
             name: name,
             key: key,
+            alias: alias,
             runStatus: 'idle',
             buildStatus: status ? status.toLowerCase() : 'unknown'
         };

@@ -4,7 +4,23 @@
     <form>
         <!--Jenkins Server Url: <input type="text" ng-model="job.server">-->
         Job Path: <input type="text" ng-model="job.path">
+        Job Alias: <input type="text" ng-model="job.alias">
 
         <input type="submit" ng-click="watchJob(job)" value="Add Job">
     </form>
+
+    <table style="width:100%">
+        <tr>
+            <th>Id</th>
+            <th>Path</th>
+            <th>Status</th>
+            <th>Alias</th>
+        </tr>
+        <tr ng-repeat="job in watchedJobs">
+            <td>{{ job.id }}</td>
+            <td>{{ job.path }}</td>
+            <td>{{ job.status }}</td>
+            <td>{{ job.alias }}</td>
+        </tr>
+    </table>
 </div>
