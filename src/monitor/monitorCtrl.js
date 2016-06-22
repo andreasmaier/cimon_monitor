@@ -5,9 +5,11 @@ angular.module('cimonmon').controller('MonitorPageCtrl', function ($scope, $root
         .then(function (jobs) {
             $log.info('watched jobs:', jobs);
 
-            jobs.data.forEach(function (job) {
-                $scope.monitorData.push(buildJob(job.path, job.status, job.alias));
-            });
+            if(Array.isArray(jobs.data.jobs)) {
+                jobs.data.jobs.forEach(function (job) {
+                    $scope.monitorData.push(buildJob(job.path, job.status, job.alias));
+                });
+            }
         })
         .catch(function (error) {
             $log.error('Error fetching jobs:', error);

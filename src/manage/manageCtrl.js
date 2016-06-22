@@ -18,7 +18,7 @@ angular.module('cimonmon').controller('ManageCtrl', function ($scope, $log, Jobs
         .then(function (response) {
             $log.debug('Already watched jobs:', response.data.jobs);
 
-            $scope.watchedJobs = response.data.jobs;
+            $scope.watchedJobs = response.data.jobs || [];
         })
         .catch(function (error) {
             $log.error('Error getting list of watched jobs. Error:', error);
