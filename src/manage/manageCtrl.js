@@ -1,4 +1,4 @@
-angular.module('cimonmon').controller('ManageCtrl', function ($scope, $log, JobsService) {
+angular.module('cimonmon').controller('ManageCtrl', function ($scope, $state, $log, JobsService) {
     $scope.job = {};
     $scope.watchedJobs = [];
     
@@ -8,19 +8,29 @@ angular.module('cimonmon').controller('ManageCtrl', function ($scope, $log, Jobs
         JobsService.save(newJob)
             .then(function (data) {
                 $log.debug('Successfully stored job!', data);
+
+                getAllJobs();
             })
             .catch(function (error) {
                 $log.error('Unable to store job [', newJob ,']. Error:', error);
             });
     };
 
-    JobsService.index()
-        .then(function (response) {
-            $log.debug('Already watched jobs:', response.data.jobs);
+    $scope.onBackClicked = function () {
+        $state.go('monitor');
+    };
 
-            $scope.watchedJobs = response.data.jobs || [];
-        })
-        .catch(function (error) {
-            $log.error('Error getting list of watched jobs. Error:', error);
-        });
+    function getAllJobs() {
+        JobsService.index()
+            .then(function (response) {
+                $log.debug('Already watched jobs:', response.data.jobs);
+
+                $scope.watchedJobs = response.data.jobs || [];
+            })
+            .catch(function (error) {
+                $log.error('Error getting list of watched jobs. Error:', error);
+            });
+    }
+
+    getAllJobs();
 });

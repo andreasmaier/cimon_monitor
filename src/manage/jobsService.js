@@ -1,7 +1,7 @@
 angular.module('cimonmon').factory('JobsService', function ($http, $log) {
     return {
         save: function (job) {
-            $log.info('Sending', job);
+            $log.info('Storing watched job :', job);
 
             return $http({
                 method: 'POST',
@@ -19,7 +19,7 @@ angular.module('cimonmon').factory('JobsService', function ($http, $log) {
         },
 
         index: function () {
-            $log.info('Gettings watched jobs');
+            $log.info('Getting all watched jobs');
 
             return $http({
                 method: 'GET',
