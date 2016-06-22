@@ -72,7 +72,7 @@ html {
     }
 
     &.running {
-      &.unknown {
+      &.undefined {
         @keyframes blinkUnknown {
           0% {
             background-color: $unknownGrey;
